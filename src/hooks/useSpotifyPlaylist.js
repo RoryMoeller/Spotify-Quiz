@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useSpotifyPlaylist(playlist_id, auth_token) {
+export function useSpotifyPlaylist(playlist_id, auth_token) {
     const [playlist, setPlaylist] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
