@@ -1,25 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
+
+import { Home } from './pages/home';
+import { Quiz } from './pages/quiz';
+
+function App(props) {
+    console.log(props.auth_token)
+    return (
+        <div className="App">
+            <Routes>
+                <Route path="/home" element={<Home auth_token={props.auth_token} />} />
+                <Route path="/quiz" element={<Quiz auth_token={props.auth_token}/>} />
+                <Route path="/" exact element={<Navigate to={"/home"} />} />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
