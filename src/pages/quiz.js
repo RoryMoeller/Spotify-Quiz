@@ -45,7 +45,7 @@ export function Quiz(props) {
             <div>
                 {loading && <p>Loading...</p>}
                 {error && <p>Error! {error}</p>}
-                {!loading && !error && <p>{parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + " by " + track.artists[0].name)}</p>}
+                {!loading && !error && <pre>{parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + " by " + track.artists[0].name + "\r\n") }</pre>}
             </div>
         </div>
     )
