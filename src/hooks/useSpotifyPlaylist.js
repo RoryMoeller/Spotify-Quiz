@@ -13,7 +13,9 @@ export function useSpotifyPlaylist(playlist_id, auth_token) {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `https://api.spotify.com/v1/playlists/4S9D4eYUYqIR9CqiMfvNJo?${playlist_id}`, {
+
+                 //     https://open.spotify.com/playlist/4S9D4eYUYqIR9CqiMfvNJo?si=2f28e76cc65e4fd1 
+                    `https://api.spotify.com/v1/playlists/${playlist_id}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `${auth_token}`,
@@ -33,7 +35,13 @@ export function useSpotifyPlaylist(playlist_id, auth_token) {
             if (!ignore) {
                 setLoading(false);
                 setError(false);
-                setPlaylist(responseBody.tracks.items || []); // incase there are no results
+                try {
+                    setPlaylist(responseBody.tracks.items || []); // incase there are no results
+                } catch (e) {
+                    setError(true);
+                    console.log("== Error: ", e);
+                    setPlaylist([])
+                }
             }
         }
         if (playlist_id) {

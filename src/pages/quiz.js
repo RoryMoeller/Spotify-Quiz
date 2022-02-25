@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSpotifyPlaylist } from '../hooks/useSpotifyPlaylist';
 
 class TrackList {
@@ -10,22 +11,41 @@ class TrackList {
     }
 }
 
+function parsePlaylistLinkToPlaylistID(link) {
+    if (link.substr(0, 34) === 'https://open.spotify.com/playlist/') {
+        console.log(link.split('/')[4].split('?')[0])
+        return link.split('/')[4].split('?')[0]
+    } else {
+        return link
+    }
+}
+
 function parsePlaylistToTrackList(playlist) {
     return new TrackList(playlist)
 }
 
 export function Quiz(props) {
-    const playlist_id = "51f1c2c97d53416b"
-    const [playlist, loading, error] = useSpotifyPlaylist(playlist_id, props.auth_token);
-    const tracklist= parsePlaylistToTrackList(playlist)
+    const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
+
+    const [playlist, loading, error] = useSpotifyPlaylist(playlist_link, props.auth_token);
     // console.log("===TrackList===", tracklist);
+    function updatePlaylist(e) {
+        e.preventDefault()
+        let pl = parsePlaylistLinkToPlaylistID(e.target.value)
+        console.log(pl)
+        setPlaylistLink(pl)
+    }
     return (
         <div>
-            Wow this is a quiz page
+            <p>Wow this is a quiz page</p>
+
+                <p>Enter playlist link below</p>
+                <input onChange={updatePlaylist}/>
+
             <div>
                 {loading && <p>Loading...</p>}
-                {error && <p>Error!</p>}
-                {!loading && !error && <p>{tracklist.tracks.map(track => track.name + " on " + track.album.name + " by " + track.artists[0].name)}</p>}
+                {error && <p>Error! {error}</p>}
+                {!loading && !error && <p>{parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + " by " + track.artists[0].name)}</p>}
             </div>
         </div>
     )
