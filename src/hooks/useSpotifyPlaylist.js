@@ -38,7 +38,9 @@ export function useSpotifyPlaylist(playlist_id, auth_token) {
                 try {
                     setPlaylist(responseBody.tracks.items || []); // incase there are no results
                 } catch (e) {
-                    setError(true);
+                    if(responseBody.error.status === 401 || responseBody.error.message === "The access token expired") {
+                        setError("Access token expired")
+                    }
                     console.log("== Error: ", e);
                     setPlaylist([])
                 }
