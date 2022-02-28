@@ -28,6 +28,7 @@ export function useSpotifyPlaylist(playlist_id, auth_token) {
                 if (e instanceof DOMException) {
                     console.log("== HTTP request cancelled");
                 } else {
+                    setLoading(false);
                     setError(true);
                     throw e;
                 }
