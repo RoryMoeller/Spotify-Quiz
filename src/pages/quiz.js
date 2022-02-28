@@ -9,6 +9,16 @@ class TrackList {
         })
         this.tracks.filter(track => track.type === 'track')
     }
+    grabAnyTrack() {
+        return this.tracks[Math.floor(Math.random() * this.tracks.length)]
+    }
+    grabTrackNotIn(trackList) {
+        let track = this.grabAnyTrack()
+        while (trackList.includes(track)) {
+            track = this.grabAnyTrack()
+        }
+        return track
+    }
 }
 
 function parsePlaylistLinkToPlaylistID(link) {
@@ -31,16 +41,20 @@ export function Quiz(props) {
     // console.log("===TrackList===", tracklist);
     function updatePlaylist(e) {
         e.preventDefault()
-        let pl = parsePlaylistLinkToPlaylistID(e.target.value)
-        console.log(pl)
-        setPlaylistLink(pl)
+        if (e.target.value.length > 4 && e.target.value.substr(0, 4) === 'http') {
+            let pl = parsePlaylistLinkToPlaylistID(e.target.value)
+            console.log(pl)
+            setPlaylistLink(pl)
+        } else {
+            e.target.value = ''
+        }
     }
     return (
         <div>
             <p>Wow this is a quiz page</p>
 
-                <p>Enter playlist link below</p>
-                <input onChange={updatePlaylist}/>
+                <p>Paste playlist link below</p>
+                <input onChange={updatePlaylist} placeholder="Hyperlink to spotify playlist"/>
 
             <div>
                 {loading && <p>Loading...</p>}
