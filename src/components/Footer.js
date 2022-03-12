@@ -16,6 +16,9 @@ export function Footer(props) {
     return (
         <div css={footerStyle}>
             This is a footer
+            <div className="questionCounter">
+                <div>Questions: {props.correctCount} / {props.questionCount}</div>
+            </div>
             {props.content && <div>{props.content}</div>}
         </div>
     )

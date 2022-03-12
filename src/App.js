@@ -2,9 +2,9 @@
 import { css, Global } from "@emotion/react";
 
 
-import logo from './logo.svg';
 import './App.css';
 
+import { useState } from 'react';
 import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 
 import { Home } from './pages/home';
@@ -19,6 +19,16 @@ const globalStyles = css`
 `
 
 function App(props) {
+    const [totalQuestions, setTotalQuestions] = useState(0)
+    const [correctResponses, setCorrectResponses] = useState(0)
+    const incorrectResponse = function () {
+        setTotalQuestions(totalQuestions + 1)
+    }
+    const correctResponse = function () {
+        setCorrectResponses(correctResponses + 1)
+        setTotalQuestions(totalQuestions + 1)
+    }
+
     console.log(props.auth_token)
     return (
         <div className="App">
@@ -29,7 +39,7 @@ function App(props) {
                 <Route path="/quiz" element={<Quiz auth_token={props.auth_token}/>} />
                 <Route path="/" exact element={<Navigate to={"/home"} />} />
             </Routes>
-            <Footer />
+            <Footer questionCount={totalQuestions} correctCount={correctResponses} />
         </div>
     );
 }
