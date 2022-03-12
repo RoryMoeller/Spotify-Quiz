@@ -10,6 +10,8 @@ export function Footer(props) {
         bottom: 0px;
         width: 100%;
         box-shadow: 0px -7px 10px 5px rgba(0,0,0,0.2);
+        background-color: rgba(160,160,160, .7);
+        backdrop-filter: blur(5px);4
     `;
     return (
         <div css={footerStyle}>
