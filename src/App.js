@@ -9,6 +9,7 @@ import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 
 import { Home } from './pages/home';
 import { Quiz } from './pages/quiz';
+import { Done } from './pages/done';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 
@@ -36,7 +37,17 @@ function App(props) {
             <Header />
             <Routes>
                 <Route path="/home" element={<Home auth_token={props.auth_token} />} />
-                <Route path="/quiz" element={<Quiz auth_token={props.auth_token} addCorrect={correctResponse} addIncorect={incorrectResponse} />} />
+                <Route path="/quiz" element={
+                    totalQuestions > 14 ?
+                    <Quiz auth_token={props.auth_token} addCorrect={correctResponse} addIncorect={incorrectResponse} /> :
+                    <Navigate to="/home" redirect/>
+                } />
+                
+                <Route path="/done" element={
+                    totalQuestions === 0 ?
+                    <Navigate to="/home" replace />  :
+                    <Done correctCount={correctResponses} questionCount={totalQuestions} /> 
+                } />
                 <Route path="/" exact element={<Navigate to={"/home"} />} />
             </Routes>
             <Footer questionCount={totalQuestions} correctCount={correctResponses} />
