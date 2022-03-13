@@ -38,7 +38,7 @@ function App(props) {
             <Routes>
                 <Route path="/home" element={<Home auth_token={props.auth_token} />} />
                 <Route path="/quiz" element={
-                    totalQuestions > 14 ?
+                    totalQuestions < 14 ?
                     <Quiz auth_token={props.auth_token} addCorrect={correctResponse} addIncorect={incorrectResponse} /> :
                     <Navigate to="/home" redirect/>
                 } />
