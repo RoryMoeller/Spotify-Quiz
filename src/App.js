@@ -29,6 +29,7 @@ function App(props) {
         setCorrectResponses(correctResponses + 1)
         setTotalQuestions(totalQuestions + 1)
     }
+    const questionLimit = 15
 
     console.log(props.auth_token)
     return (
@@ -38,13 +39,13 @@ function App(props) {
             <Routes>
                 <Route path="/home" element={<Home auth_token={props.auth_token} />} />
                 <Route path="/quiz" element={
-                    totalQuestions < 14 ?
-                    <Quiz auth_token={props.auth_token} addCorrect={correctResponse} addIncorect={incorrectResponse} /> :
-                    <Navigate to="/home" redirect/>
+                    totalQuestions < questionLimit ?
+                    <Quiz auth_token={props.auth_token} addCorrect={correctResponse} addIncorrect={incorrectResponse} /> :
+                    <Navigate to="/done" redirect/>
                 } />
                 
                 <Route path="/done" element={
-                    totalQuestions === 0 ?
+                    (totalQuestions < 14) ?
                     <Navigate to="/home" replace />  :
                     <Done correctCount={correctResponses} questionCount={totalQuestions} /> 
                 } />

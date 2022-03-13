@@ -83,9 +83,9 @@ export function Quiz(props) {
                 {error && <p>Error! {error}</p>}
                 {!loading && !error && trackList.size > 0 && 
                     <div className="ansBox">
-                        <Answer answer={trackList.grabAnyTrack()} ansType="track"/> 
-                        <Answer answer={trackList.grabAnyTrack()} ansType="album"/> 
-                        <Answer answer={trackList.grabAnyTrack()} ansType="artist"/> 
+                        <Answer answer={trackList.grabAnyTrack()} ansType="track" submitSelection={props.addCorrect}/> 
+                        <Answer answer={trackList.grabAnyTrack()} ansType="album" submitSelection={props.addIncorrect} /> 
+                        <Answer answer={trackList.grabAnyTrack()} ansType="artist" submitSelection={props.addIncorrect} /> 
                     </div>
                 }
                 {/* {<p>Size: {trackList.size}</p>} */}

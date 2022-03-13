@@ -31,19 +31,19 @@ export function Answer(props) {
 
     if (props.ansType === "album") {
         return (
-            <button css={ansBoxStyle}>
+            <button onClick={props.submitSelection} css={ansBoxStyle}>
                 <p>{props.answer.album.name}</p>
             </button>
         )
     } else if (props.ansType === "artist") {
         return (
-            <button css={ansBoxStyle}>
+            <button onClick={props.submitSelection} css={ansBoxStyle}>
                 <p>{props.answer.artists[0].name}</p>
             </button>
         )
     } else if (props.ansType === "track") {
         return (
-            <button css={ansBoxStyle}>
+            <button onClick={props.submitSelection} css={ansBoxStyle}>
                 <p>{props.answer.name}</p>
             </button>
         )
