@@ -36,7 +36,7 @@ function App(props) {
             <Header />
             <Routes>
                 <Route path="/home" element={<Home auth_token={props.auth_token} />} />
-                <Route path="/quiz" element={<Quiz auth_token={props.auth_token}/>} />
+                <Route path="/quiz" element={<Quiz auth_token={props.auth_token} addCorrect={correctResponse} addIncorect={incorrectResponse} />} />
                 <Route path="/" exact element={<Navigate to={"/home"} />} />
             </Routes>
             <Footer questionCount={totalQuestions} correctCount={correctResponses} />
