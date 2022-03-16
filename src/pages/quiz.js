@@ -32,15 +32,6 @@ class TrackList {
     }
 }
 
-function parsePlaylistLinkToPlaylistID(link) {
-    if (link.substr(0, 34) === 'https://open.spotify.com/playlist/') {
-        console.log(link.split('/')[4].split('?')[0])
-        return link.split('/')[4].split('?')[0]
-    } else {
-        return link
-    }
-}
-
 function parsePlaylistToTrackList(playlist) {
     return new TrackList(playlist)
 }
@@ -49,7 +40,16 @@ function AnswerBank(props) {
     const questionStyle = css`
         .AnswerP {
             font-size: 25px;
+            margin-top: 10px;
+            margin-bottom: 30px;
         }
+        background-color: rgba(0,0,0, .2);
+        padding-top: 10px;
+        margin-bottom: 20px;
+        padding-bottom: 60px;
+        border-radius: 20px;
+        box-shadow: 0px 0px 20px rgba(0,0,0, .2);
+        width: 70%;
     `
 
     const answerBoxStyle = css`
@@ -59,6 +59,7 @@ function AnswerBank(props) {
         align-items: center;
         width: 75%;
         margin-top: 25px;
+
     `
     const answerElements = []
     // generate random number between 0 and the length of the answer array
@@ -90,10 +91,10 @@ export function Quiz(props) {
         alert("Please enter a playlist link")
         nav_playlist_link = "4S9D4eYUYqIR9CqiMfvNJo"
     }
-    const [playlist_link, setPlaylistLink] = useState(nav_playlist_link)
-    const [playlist, loading, error] = useSpotifyPlaylist(playlist_link, props.auth_token);
+    const [playlist, loading, error] = useSpotifyPlaylist(nav_playlist_link, props.auth_token);
     const [trackList, setTrackList] = useState(new TrackList(playlist))
     const quizType = new URLSearchParams(window.location.search).get('quiz_type')
+
     useEffect(() => {
         if (playlist) {
             setTrackList(parsePlaylistToTrackList(playlist))
@@ -108,16 +109,6 @@ export function Quiz(props) {
         return tracks
     }
 
-    function updatePlaylist(e) {
-        e.preventDefault()
-        console.log("Quiz Type:", quizType)
-        if (e.target.value.length > 4 && e.target.value.substr(0, 4) === 'http') {
-            let pl = parsePlaylistLinkToPlaylistID(e.target.value)
-            setPlaylistLink(pl)
-        } else {
-            e.target.value = ''
-        }
-    }
     return (
         <div>
             <p>Wow this is a quiz page</p>
@@ -133,17 +124,7 @@ export function Quiz(props) {
                         answers={grabNumberOfTracks(3)}
                     />
                 }
-                {/* {<p>Size: {trackList.size}</p>} */}
             </center>
         </div>
     )
 }
-
-
-/* 
-{
-    <pre>
-        {parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n") }
-    </pre> 
-}
-*/
