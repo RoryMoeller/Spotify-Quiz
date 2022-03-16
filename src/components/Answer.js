@@ -11,7 +11,7 @@ export function Answer(props) {
         cursor: pointer;
         background-image: 
             radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,.1) 100%),
-            url("https://i.scdn.co/image/ab67616d0000b2736f3c3c8c677633eddf0517d6");
+            url(${props.answer.album.images[1].url});
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
