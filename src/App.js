@@ -10,8 +10,10 @@ import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 import { Home } from './pages/home';
 import { Quiz } from './pages/quiz';
 import { Done } from './pages/done';
+
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+
 
 const globalStyles = css`
     html {
@@ -20,6 +22,8 @@ const globalStyles = css`
 `
 
 function App(props) {
+
+    // Question Tracking
     const [totalQuestions, setTotalQuestions] = useState(0)
     const [correctResponses, setCorrectResponses] = useState(0)
     const incorrectResponse = function () {
@@ -45,7 +49,7 @@ function App(props) {
                 } />
                 
                 <Route path="/done" element={
-                    (totalQuestions < 14) ?
+                    (totalQuestions <= questionLimit) ?
                     <Navigate to="/home" replace />  :
                     <Done correctCount={correctResponses} questionCount={totalQuestions} /> 
                 } />
