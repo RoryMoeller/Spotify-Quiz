@@ -43,6 +43,31 @@ function parsePlaylistToTrackList(playlist) {
     return new TrackList(playlist)
 }
 
+function AnswerBank(props) {
+    const quizStyle = css`
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 75%;
+        margin-top: 25px;
+    `
+    const answerElements = []
+    for (let i = 0; i < props.answers.length; i++) {
+        answerElements.push(
+            <Answer key={i} answer={props.answers[i]} ansType={props.ansType} submitSelection={props.addCorrect} />
+        )
+    }
+    return (
+        <div css={quizStyle}>
+            {answerElements}
+            {/* <Answer answer={trackList.grabAnyTrack()} ansType="track" submitSelection={props.addCorrect} />
+            <Answer answer={trackList.grabAnyTrack()} ansType="album" submitSelection={props.addIncorrect} />
+            <Answer answer={trackList.grabAnyTrack()} ansType="artist" submitSelection={props.addIncorrect} /> */}
+        </div>
+    )
+}
+
 export function Quiz(props) {
     const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
     const [playlist, loading, error] = useSpotifyPlaylist(playlist_link, props.auth_token);
@@ -53,16 +78,7 @@ export function Quiz(props) {
         } 
     }, [playlist])
 
-    const quizStyle = css`
-        .ansBox {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            align-items: center;
-            width: 100%;
-            margin-top: 25px;
-        }
-    `
+    
     function grabNumberOfTracks(numberTracks) {
         let tracks = []
         for (let i = 0; i < numberTracks; i++) {
@@ -70,7 +86,7 @@ export function Quiz(props) {
         }
         return tracks
     }
-    
+
     function updatePlaylist(e) {
         e.preventDefault()
         if (e.target.value.length > 4 && e.target.value.substr(0, 4) === 'http') {
@@ -81,24 +97,25 @@ export function Quiz(props) {
         }
     }
     return (
-        <div css={quizStyle}>
+        <div>
             <p>Wow this is a quiz page</p>
 
                 <p>Paste playlist link below</p>
                 <input onChange={updatePlaylist} placeholder="Hyperlink to spotify playlist"/>
 
-            <div>
+            <center>
                 {loading && <p>Loading...</p>}
                 {error && <p>Error! {error}</p>}
                 {!loading && !error && trackList.size > 0 && 
-                    <div className="ansBox">
-                        <Answer answer={trackList.grabAnyTrack()} ansType="track" submitSelection={props.addCorrect}/> 
-                        <Answer answer={trackList.grabAnyTrack()} ansType="album" submitSelection={props.addIncorrect} /> 
-                        <Answer answer={trackList.grabAnyTrack()} ansType="artist" submitSelection={props.addIncorrect} /> 
-                    </div>
+                    <AnswerBank 
+                        ansType="track"
+                        addCorrect={props.addCorrect}
+                        addIncorrect={props.addIncorrect}
+                        answers={grabNumberOfTracks(3)}
+                    />
                 }
                 {/* {<p>Size: {trackList.size}</p>} */}
-            </div>
+            </center>
         </div>
     )
 }
