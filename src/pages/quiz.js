@@ -21,6 +21,8 @@ class TrackList {
     }
     grabTrackNotIn(trackList) {
         let track = this.grabAnyTrack()
+        if (trackList.length === this.size)
+            return track
         while (trackList.includes(track)) {
             track = this.grabAnyTrack()
         }
@@ -61,7 +63,13 @@ export function Quiz(props) {
             margin-top: 25px;
         }
     `
+    function grabNumberOfTracks(numberTracks) {
+        let tracks = []
+        for (let i = 0; i < numberTracks; i++) {
+            tracks.push(trackList.grabTrackNotIn(tracks))
+        }
 
+    }
     function updatePlaylist(e) {
         e.preventDefault()
         if (e.target.value.length > 4 && e.target.value.substr(0, 4) === 'http') {
