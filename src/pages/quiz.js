@@ -21,8 +21,10 @@ class TrackList {
     }
     grabTrackNotIn(trackList) {
         let track = this.grabAnyTrack()
-        if (trackList.length === this.size)
+        if (trackList.length === this.size){
+            alert("Please use a larger playlist")
             return track
+        }
         while (trackList.includes(track)) {
             track = this.grabAnyTrack()
         }
@@ -44,7 +46,13 @@ function parsePlaylistToTrackList(playlist) {
 }
 
 function AnswerBank(props) {
-    const quizStyle = css`
+    const questionStyle = css`
+        .AnswerP {
+            font-size: 25px;
+        }
+    `
+
+    const answerBoxStyle = css`
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -53,17 +61,25 @@ function AnswerBank(props) {
         margin-top: 25px;
     `
     const answerElements = []
+    // generate random number between 0 and the length of the answer array
+    const correctIndex = parseInt( Math.random() * 10  % props.answers.length )
+    console.log(correctIndex)
     for (let i = 0; i < props.answers.length; i++) {
         answerElements.push(
-            <Answer key={i} answer={props.answers[i]} ansType={props.ansType} submitSelection={props.addCorrect} />
+            <Answer key={i} answer={props.answers[i]} ansType={props.ansType} submitSelection={i === correctIndex ? props.addCorrect : props.addIncorrect} />
         )
     }
+    // Create a question based on track @correctIndex
+    const question = `Click track  #${correctIndex + 1}`
     return (
-        <div css={quizStyle}>
-            {answerElements}
-            {/* <Answer answer={trackList.grabAnyTrack()} ansType="track" submitSelection={props.addCorrect} />
-            <Answer answer={trackList.grabAnyTrack()} ansType="album" submitSelection={props.addIncorrect} />
-            <Answer answer={trackList.grabAnyTrack()} ansType="artist" submitSelection={props.addIncorrect} /> */}
+        <div css={questionStyle}>
+            <p className="AnswerP">{question}</p>
+            <div css={answerBoxStyle}>
+                {answerElements}
+                {/* <Answer answer={trackList.grabAnyTrack()} ansType="track" submitSelection={props.addCorrect} />
+                <Answer answer={trackList.grabAnyTrack()} ansType="album" submitSelection={props.addIncorrect} />
+                <Answer answer={trackList.grabAnyTrack()} ansType="artist" submitSelection={props.addIncorrect} /> */}
+            </div>
         </div>
     )
 }
