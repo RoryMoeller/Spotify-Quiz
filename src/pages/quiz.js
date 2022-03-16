@@ -68,8 +68,9 @@ export function Quiz(props) {
         for (let i = 0; i < numberTracks; i++) {
             tracks.push(trackList.grabTrackNotIn(tracks))
         }
-
+        return tracks
     }
+    
     function updatePlaylist(e) {
         e.preventDefault()
         if (e.target.value.length > 4 && e.target.value.substr(0, 4) === 'http') {
