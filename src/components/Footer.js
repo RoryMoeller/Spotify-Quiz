@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 export function Footer(props) {
     const footerStyle = css`
         height: 60px;
-        border-top: 1px solid #eaeaea;
+        padding-top: 5px;
         position: fixed;
         bottom: 0px;
         width: 100%;
