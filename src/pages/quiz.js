@@ -85,16 +85,21 @@ function AnswerBank(props) {
 }
 
 export function Quiz(props) {
-    const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
+    var nav_playlist_link = new URLSearchParams(window.location.search).get('playlist_link')
+    if (nav_playlist_link === null) {
+        alert("Please enter a playlist link")
+        nav_playlist_link = "4S9D4eYUYqIR9CqiMfvNJo"
+    }
+    const [playlist_link, setPlaylistLink] = useState(nav_playlist_link)
     const [playlist, loading, error] = useSpotifyPlaylist(playlist_link, props.auth_token);
     const [trackList, setTrackList] = useState(new TrackList(playlist))
+    const quizType = new URLSearchParams(window.location.search).get('quiz_type')
     useEffect(() => {
         if (playlist) {
             setTrackList(parsePlaylistToTrackList(playlist))
         } 
     }, [playlist])
 
-    
     function grabNumberOfTracks(numberTracks) {
         let tracks = []
         for (let i = 0; i < numberTracks; i++) {
@@ -105,6 +110,7 @@ export function Quiz(props) {
 
     function updatePlaylist(e) {
         e.preventDefault()
+        console.log("Quiz Type:", quizType)
         if (e.target.value.length > 4 && e.target.value.substr(0, 4) === 'http') {
             let pl = parsePlaylistLinkToPlaylistID(e.target.value)
             setPlaylistLink(pl)
@@ -116,15 +122,12 @@ export function Quiz(props) {
         <div>
             <p>Wow this is a quiz page</p>
 
-                <p>Paste playlist link below</p>
-                <input onChange={updatePlaylist} placeholder="Hyperlink to spotify playlist"/>
-
             <center>
                 {loading && <p>Loading...</p>}
                 {error && <p>Error! {error}</p>}
                 {!loading && !error && trackList.size > 0 && 
                     <AnswerBank 
-                        ansType="track"
+                        ansType={quizType}
                         addCorrect={props.addCorrect}
                         addIncorrect={props.addIncorrect}
                         answers={grabNumberOfTracks(3)}

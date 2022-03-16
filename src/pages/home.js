@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 import { useSpotifyPlaylist } from '../hooks/useSpotifyPlaylist';
 
@@ -49,6 +51,7 @@ export function Home(props) {
     const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
     const [playlist, loading, error] = useSpotifyPlaylist(playlist_link, props.auth_token);
     const [trackList, setTrackList] = useState(new TrackList(playlist))
+    const navigateTo = useNavigate();
     useEffect(() => {
         if (playlist) {
             setTrackList(parsePlaylistToTrackList(playlist))
@@ -78,6 +81,18 @@ export function Home(props) {
                     <pre>
                         {parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n")}
                     </pre> 
+                    <button onClick={() => {
+                        console.log("This functionality should probably be handled by the header/navbar?")
+                        navigateTo("/quiz?quiz_type=track&playlist_link=" + playlist_link)
+                    }}> Quiz By Tracks </button>
+                    <button onClick={() => {
+                        console.log("This functionality should probably be handled by the header/navbar?")
+                        navigateTo("/quiz?quiz_type=album&playlist_link=" + playlist_link)
+                    }}> Quiz By Album </button>
+                    <button onClick={() => {
+                        console.log("This functionality should probably be handled by the header/navbar?")
+                        navigateTo("/quiz?quiz_type=artist&playlist_link=" + playlist_link)
+                    }}> Quiz By Artist </button>
                 </div>
             }
         </div>
