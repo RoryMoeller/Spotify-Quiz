@@ -49,7 +49,7 @@ function App(props) {
                 } />
                 
                 <Route path="/done" element={
-                    (totalQuestions <= questionLimit) ?
+                    (totalQuestions < questionLimit) ?
                     <Navigate to="/home" replace />  :
                     <Done correctCount={correctResponses} questionCount={totalQuestions} /> 
                 } />
