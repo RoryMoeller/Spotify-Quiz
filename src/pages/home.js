@@ -146,6 +146,7 @@ export function Home(props) {
             e.target.value = ''
         }
     }
+    props.resetQuizStats();
 
     return (
         <div css={homeStyle}>
