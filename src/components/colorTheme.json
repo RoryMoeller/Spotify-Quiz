@@ -7,7 +7,9 @@
         "background" : {
             "primary": "45,45,45",
             "secondary": "52,52,52",
-            "tertiary": "60,60,60"
-        }
+            "tertiary": "60,60,60",
+            "quaternary": "87,87,87"
+        },
+        "text": "255,255,255"
     }
 }

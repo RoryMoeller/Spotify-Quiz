@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 import { useState, useEffect } from 'react';
 import { useSpotifyPlaylist } from '../hooks/useSpotifyPlaylist';
 import { Answer } from '../components/Answer';
+import colors from '../components/colorTheme';
 
 class TrackList {
     constructor(playlist) {
@@ -43,7 +44,8 @@ function AnswerBank(props) {
             margin-top: 10px;
             margin-bottom: 30px;
         }
-        background-color: rgba(0,0,0, .2);
+        color: rgb(${colors.standard.text});
+        background-color: rgba(${colors.standard.background.quaternary} .2);
         padding-top: 10px;
         margin-bottom: 20px;
         padding-bottom: 60px;
