@@ -127,7 +127,7 @@ export function Quiz(props) {
 
     return (
         <div>
-            <p> {props.ansType} Quiz</p>
+            <p> {quizType} Quiz</p>
 
             <center>
                 {loading && <p>Loading...</p>}
