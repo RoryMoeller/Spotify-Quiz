@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 
+import { RiSpotifyLine  } from 'react-icons/ri';
 import { css } from "@emotion/react";
 import colors from "./colorTheme"
 import { 
+    Link,
     NavLink,
   }from 'react-router-dom';
 export function Header(props) {
@@ -20,10 +22,16 @@ export function Header(props) {
     const otherStyle = css`
     text-decoration: none;
     color: white;
+    `;
+    const homeButton = css`
+    float: left;
+    color: white;
+    margin: 5px;
 `;
     return (
         <div>
             <div css={headerStyle}>
+                <Link css={homeButton} to="/home"><RiSpotifyLine /></Link>
                 <NavLink css={otherStyle} to="/home">Spotify Playlist Quiz</NavLink>
                 {props.content && <div>{props.content}</div>}
             </div>
