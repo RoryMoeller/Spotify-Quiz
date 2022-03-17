@@ -82,10 +82,13 @@ function AnswerBank(props) {
         album: [
             `Which of these albums is by ${props.answers[correctIndex].artists[0].name}?`,
             `Which of these albums has the song ${props.answers[correctIndex].name} on it?`,
-            `Which of these albums was released in ${props.answers[correctIndex].album.release_date.substr(0, 4)}?`
+            `Which of these albums was released in ${props.answers[correctIndex].album.release_date.substr(0, 4)}?`,
+            `Which album has ${props.answers[correctIndex].album.total_tracks} tracks?`
         ],
         artist: [
-            `Which of these artists did the song "${props.answers[correctIndex].name}"?`
+            `Which of these artists did the song "${props.answers[correctIndex].name}"?`,
+            `Which artist created an album named "${props.answers[correctIndex].album.name}"?`,
+            `Which artist released an album ${props.answers[correctIndex].album.release_date.substr(0, 4)}`
         ]
     }
     const question = questionBank[props.ansType][parseInt(Math.random() * questionBank[props.ansType].length)]
