@@ -4,13 +4,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App';
-const AUTH_TOKEN = "Bearer " + process.env.REACT_APP_SPOTIFY_AUTH_TOKEN;
 
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App auth_token={AUTH_TOKEN} />
+            <App />
         </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')

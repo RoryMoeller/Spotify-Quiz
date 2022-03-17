@@ -48,7 +48,20 @@ function parsePlaylistToTrackList(playlist) {
     return new TrackList(playlist)
 }
 
-
+const logMeIn = function() {
+    var client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    var redirect_uri = 'http://localhost:3000/home';
+    var state = Math.random().toFixed(16).toString();
+    localStorage.setItem('stateKey', 'state');
+    var scope = 'user-read-private user-read-email';
+    var url = 'https://accounts.spotify.com/authorize';
+    url += '?response_type=token';
+    url += '&client_id=' + encodeURIComponent(client_id);
+    url += '&scope=' + encodeURIComponent(scope);
+    url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
+    url += '&state=' + encodeURIComponent(state);
+    window.location = url;
+}
 
 export function Home(props) {
     const homeStyle = css`
@@ -90,7 +103,6 @@ export function Home(props) {
         }
         .buttonBox button:hover {
             filter: brightness(0.5);
-            
         }
         .active  {
             background-color: rgb(${colors.standard.accents.lighter}) !important;
@@ -132,7 +144,20 @@ export function Home(props) {
         button, select {
             font-family: inherit;
         }
-
+        .loginButton {
+            display: block;
+            margin-top: 40px;
+            background-color: rgb(${colors.standard.background.button});
+            color: rgba(0, 0, 0, 0.5);
+            padding-left: 18px;
+            padding-bottom: 5px;
+            padding-right: 18px;
+            padding-top: 5px;
+            border-radius: 500px;
+            font-size: 25px;
+            border: none;
+            cursor: pointer;
+        }
     `
     const otherStyle = css`
     color: rgb(${colors.standard.text.primary});
@@ -141,9 +166,18 @@ export function Home(props) {
     // Playlist building
     // storing this here in case we want to switch back to the old way of listing playlists
     /* </tr>track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n") */ 
-
+    const parsedHash = new URLSearchParams(
+        window.location.hash.substr(1)
+    )
+    var access_token = parsedHash.get('access_token')
+    if (access_token === null) {
+        access_token = props.auth_token
+    } else {
+        access_token = "Bearer " + access_token
+        props.updateToken(access_token)
+    }
     const [playlist_link, setPlaylistLink] = useState('37i9dQZF1DWXRqgorJj26U')
-    const [playlist, loading, error, playlistName, playlistLink] = useSpotifyPlaylist(playlist_link, props.auth_token);
+    const [playlist, loading, error, playlistName, playlistLink] = useSpotifyPlaylist(playlist_link, access_token);
     props.setPlaylistName(playlistName)
     props.setPlaylistLink(playlistLink)
     const [trackList, setTrackList] = useState(new TrackList(playlist))
@@ -171,7 +205,7 @@ export function Home(props) {
                 <p css={otherStyle}>Paste playlist link below</p>
                 <input onChange={updatePlaylist} placeholder="Hyperlink to spotify playlist" />
                 {loading && <p>Loading...</p>}
-                {error && <p>Error! {error}</p>}
+                {error && <p>Error! {error}</p> && <button onClick={logMeIn} className={"loginButton"}> Log In with Spotify </button>}
                 {!loading && !error && trackList.size > 0 &&
                     <div>
                         <p css={otherStyle}>Currently using this playlist:</p>
