@@ -44,7 +44,7 @@ function AnswerBank(props) {
             margin-top: 10px;
             margin-bottom: 30px;
         }
-        color: rgb(${colors.standard.text});
+        color: rgb(${colors.standard.text.primary});
         background-color: rgba(${colors.standard.background.quaternary}, .2);
         padding-top: 10px;
         margin-bottom: 20px;
@@ -106,7 +106,7 @@ function AnswerBank(props) {
 
 export function Quiz(props) {
     const quizHeader = css`
-    color: rgb(${colors.standard.text});
+    color: rgb(${colors.standard.text.primary});
 `
     var nav_playlist_link = new URLSearchParams(window.location.search).get('playlist_link')
     if (nav_playlist_link === null) {
@@ -136,9 +136,7 @@ export function Quiz(props) {
 
     return (
         <div>
-            <div css = {quizHeader}>
-            <p>{capitalizeFirstLetter(quizType)} Quiz</p>
-            </div>
+            <p css = {quizHeader}>{capitalizeFirstLetter(quizType)} Quiz</p>
             <center>
                 {loading && <p>Loading...</p>}
                 {error && <p>Error! {error}</p>}
