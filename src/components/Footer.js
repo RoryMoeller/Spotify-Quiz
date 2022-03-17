@@ -25,7 +25,6 @@ export function Footer(props) {
 
         }
     `;
-    console.log("link:", props.playlistLink)
     return (
         <div css={footerStyle}>
             <div><a href="https://www.spotify.com/" target="_blank" rel="noreferrer">Powered by Spotify</a></div>

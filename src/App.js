@@ -33,7 +33,6 @@ const globalStyles = css`
 `
 
 function App(props) {
-    console.log(colors)
     // Question Tracking
     const [totalQuestions, setTotalQuestions] = useState(0)
     const [correctResponses, setCorrectResponses] = useState(0)
