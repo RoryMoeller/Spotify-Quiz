@@ -16,6 +16,11 @@ import { Header } from './components/Header';
 
 
 const globalStyles = css`
+@import url('https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap');
+    body {
+    font-family: 'Ropa Sans', sans-serif;
+    margin: 0;
+    }
     html {
         height: 100%;
     }

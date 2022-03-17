@@ -4,6 +4,8 @@ import { css } from "@emotion/react";
 
 export function Header(props) {
     const headerStyle = css`
+        color: white;
+        font-size: 40px;
         height: 60px;
         padding-top: 5px;
         width: 100%;
