@@ -48,7 +48,7 @@ function App(props) {
     const [questionLimit, setQuestionLimit] = useState(15)
     const AUTH_TOKEN = "Bearer " + (props.accessToken || process.env.REACT_APP_SPOTIFY_AUTH_TOKEN);
     const [spotifyToken, setSpotifyToken] = useState(AUTH_TOKEN)
-    const queryParams = new URLSearchParams(window.location.hash.substr(1));
+    // const queryParams = new URLSearchParams(window.location.hash.substr(1));
     const resetQuizStats = function () {
         setTotalQuestions(0)
         setCorrectResponses(0)
