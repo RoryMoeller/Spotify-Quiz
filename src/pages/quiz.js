@@ -76,10 +76,14 @@ function AnswerBank(props) {
     // Create a question based on track @correctIndex
     const questionBank = {
         track: [
-            `Which of these songs was released in ${props.answers[correctIndex].album.release_date.substr(0, 4)}?`
+            `Which of these songs was released in ${props.answers[correctIndex].album.release_date.substr(0, 4)}?`,
+            `Which of these songs is by ${props.answers[correctIndex].artists[0].name}?`,
+            `Which of these songs is on ${props.answers[correctIndex].album.name}?`
         ],
         album: [
-            `Which of these albums is by ${props.answers[correctIndex].artists[0].name}?`
+            `Which of these albums is by ${props.answers[correctIndex].artists[0].name}?`,
+            `Which of these albums has the song ${props.answers[correctIndex].name} on it?`,
+            `Which of these albums was released in ${props.answers[correctIndex].album.release_date.substr(0, 4)}?`
         ],
         artist: [
             `Which of these artists did the song "${props.answers[correctIndex].name}"?`
@@ -125,7 +129,7 @@ export function Quiz(props) {
         return tracks
     }
     function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);;
+        return string.charAt(0).toUpperCase() + string.slice(1);
       }
 
     return (
