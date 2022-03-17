@@ -56,8 +56,23 @@ export function Home(props) {
             overflow-y: auto;
             max-height: 60vh;
             max-width: 60vw;
-            border: 1px solid black;
+            border: 1px solid transparent;
             background-color: white;
+        }
+        .buttonBox {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            width: 75%;
+            margin-top: 30px;
+        }
+        button {
+            padding-left: 18px;
+            padding-bottom: 5px;
+            padding-right: 18px;
+            padding-top: 5px;
+            border-radius: 500px;
+            font-size: 25px;
         }
     `
     // Playlist building
@@ -93,19 +108,21 @@ export function Home(props) {
                     <p>Currently using this playlist:</p>
                     <pre className="trackBox">
                         {parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n")}
-                    </pre> 
-                    <button onClick={() => {
-                        console.log("This functionality should probably be handled by the header/navbar?")
-                        navigateTo("/quiz?quiz_type=track&playlist_link=" + playlist_link)
-                    }}> Quiz By Tracks </button>
-                    <button onClick={() => {
-                        console.log("This functionality should probably be handled by the header/navbar?")
-                        navigateTo("/quiz?quiz_type=album&playlist_link=" + playlist_link)
-                    }}> Quiz By Album </button>
-                    <button onClick={() => {
-                        console.log("This functionality should probably be handled by the header/navbar?")
-                        navigateTo("/quiz?quiz_type=artist&playlist_link=" + playlist_link)
-                    }}> Quiz By Artist </button>
+                    </pre>
+                    <center className="buttonBox">
+                        <button onClick={() => {
+                            console.log("This functionality should probably be handled by the header/navbar?")
+                            navigateTo("/quiz?quiz_type=track&playlist_link=" + playlist_link)
+                        }}> Quiz By Tracks </button>
+                        <button onClick={() => {
+                            console.log("This functionality should probably be handled by the header/navbar?")
+                            navigateTo("/quiz?quiz_type=album&playlist_link=" + playlist_link)
+                        }}> Quiz By Album </button>
+                        <button onClick={() => {
+                            console.log("This functionality should probably be handled by the header/navbar?")
+                            navigateTo("/quiz?quiz_type=artist&playlist_link=" + playlist_link)
+                        }}> Quiz By Artist </button>
+                    </center>
                 </div>
             }
         </center>
