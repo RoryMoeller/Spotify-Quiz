@@ -223,7 +223,7 @@ export function Home(props) {
                 {error && <p>Error! {error}</p> && <button onClick={logMeIn} className={"loginButton"}> Log In with Spotify </button>}
                 {!loading && !error && trackList.size > 0 &&
                     <div>
-                        <p css={otherStyle}>Currently using this playlist:</p>
+                        <p css={otherStyle}>Currently using {playlistName}:</p>
                         <div className="trackBox">
                             <table>
                                 <thead>
