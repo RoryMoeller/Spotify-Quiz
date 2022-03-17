@@ -13,13 +13,19 @@ import { Done } from './pages/done';
 
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import colors from './components/colorTheme';
 
 
 const globalStyles = css`
 @import url('https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap');
     body {
-    font-family: 'Ropa Sans', sans-serif;
-    margin: 0;
+        font-family: 'Ropa Sans', sans-serif;
+        margin: 0;
+        background: linear-gradient(0deg,
+            rgba(${colors.standard.background.primary},1) 0%,
+            rgba(${colors.standard.background.secondary},1) 20%,
+            rgba(${colors.standard.background.tertiary},1) 95%
+        );
     }
     html {
         height: 100%;
@@ -27,7 +33,7 @@ const globalStyles = css`
 `
 
 function App(props) {
-
+    console.log(colors)
     // Question Tracking
     const [totalQuestions, setTotalQuestions] = useState(0)
     const [correctResponses, setCorrectResponses] = useState(0)

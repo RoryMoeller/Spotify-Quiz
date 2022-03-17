@@ -1,0 +1,13 @@
+{
+    "standard" : {
+        "accents" : {
+            "primary": "30,215,96",
+            "darker": "16,115,51"
+        },
+        "background" : {
+            "primary": "45,45,45",
+            "secondary": "52,52,52",
+            "tertiary": "60,60,60"
+        }
+    }
+}

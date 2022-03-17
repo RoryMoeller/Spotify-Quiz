@@ -57,6 +57,7 @@ export function Home(props) {
             max-height: 60vh;
             max-width: 60vw;
             border: 1px solid black;
+            background-color: white;
         }
     `
     // Playlist building

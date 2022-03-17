@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
+import colors from "./colorTheme";
 
 export function Footer(props) {
     const footerStyle = css`
@@ -10,7 +11,7 @@ export function Footer(props) {
         bottom: 0px;
         width: 100%;
         box-shadow: 0px -7px 10px 5px rgba(0,0,0,0.2);
-        background-color: rgba(30,215,96, .7);
+        background-color: rgba(${colors.standard.accents.primary}, .7);
         backdrop-filter: blur(5px);4
     `;
     return (
