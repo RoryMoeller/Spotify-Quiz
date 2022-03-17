@@ -81,6 +81,7 @@ export function Home(props) {
             border-radius: 500px;
             font-size: 25px;
             border: none;
+            cursor: pointer;
         }
         .sideBar {
             display: flex;
@@ -98,6 +99,7 @@ export function Home(props) {
             width: 100%;
             border: none;
             height: 50px;
+            cursor: pointer;
         }
         .sideBar button:hover {
             filter: brightness(0.5);
