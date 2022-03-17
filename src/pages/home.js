@@ -83,9 +83,18 @@ export function Home(props) {
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            width: 25%;
-            margin-top: 30px;
+            width: 200px;
             background-color: white;
+            position: absolute;
+            top: 65px;
+            left: 0;
+            height: calc(100vh - 130px);
+        }
+        .sideBar button {
+            width: 100%;
+            border: none;
+            height: 50px;
+
         }
 
     `
