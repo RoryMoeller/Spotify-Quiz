@@ -112,6 +112,9 @@ export function Home(props) {
             height: 40px;
             font-size: 20px;
         }
+        button, select {
+            font-family: inherit;
+        }
 
     `
     const otherStyle = css`
