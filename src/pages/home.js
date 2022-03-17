@@ -68,7 +68,7 @@ export function Home(props) {
             margin-top: 30px;
         }
         .buttonBox button {
-            background-color: white;
+            background-color: rgb(${colors.standard.background.button});
             color: rgba(0, 0, 0, 0.5);
             padding-left: 18px;
             padding-bottom: 5px;
