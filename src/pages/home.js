@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import colors from '../components/colorTheme';
 
+import playlistSuggestions from '../components/playlistList';
+
 import { useSpotifyPlaylist } from '../hooks/useSpotifyPlaylist';
 
 
@@ -65,7 +67,7 @@ export function Home(props) {
             width: 75%;
             margin-top: 30px;
         }
-        button {
+        .buttonBox button {
             background-color: white;
             color: rgba(0, 0, 0, 0.5);
             padding-left: 18px;
@@ -75,7 +77,17 @@ export function Home(props) {
             border-radius: 500px;
             font-size: 25px;
             border: none;
-        }    
+        }
+        .sideBar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 25%;
+            margin-top: 30px;
+            background-color: white;
+        }
+
     `
     const otherStyle = css`
     color: rgb(${colors.standard.text});
@@ -104,30 +116,43 @@ export function Home(props) {
     }
 
     return (
-        <center css={homeStyle}>
-            <p css={otherStyle}>Paste playlist link below</p>
-            <input onChange={updatePlaylist} placeholder="Hyperlink to spotify playlist" />
-            {loading && <p>Loading...</p>}
-            {error && <p>Error! {error}</p>}
-            {!loading && !error && trackList.size > 0 &&
-                <div>
-                    <p css={otherStyle}>Currently using this playlist:</p>
-                    <pre className="trackBox">
-                        {parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n")}
-                    </pre>
-                    <center className="buttonBox">
-                        <button onClick={() => {
-                            navigateTo("/quiz?quiz_type=track&playlist_link=" + playlist_link)
-                        }}> Quiz By Tracks </button>
-                        <button onClick={() => {
-                            navigateTo("/quiz?quiz_type=album&playlist_link=" + playlist_link)
-                        }}> Quiz By Album </button>
-                        <button onClick={() => {
-                            navigateTo("/quiz?quiz_type=artist&playlist_link=" + playlist_link)
-                        }}> Quiz By Artist </button>
-                    </center>
-                </div>
-            }
-        </center>
+        <div css={homeStyle}>
+            <center >
+                <p css={otherStyle}>Paste playlist link below</p>
+                <input onChange={updatePlaylist} placeholder="Hyperlink to spotify playlist" />
+                {loading && <p>Loading...</p>}
+                {error && <p>Error! {error}</p>}
+                {!loading && !error && trackList.size > 0 &&
+                    <div>
+                        <p css={otherStyle}>Currently using this playlist:</p>
+                        <pre className="trackBox">
+                            {parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n")}
+                        </pre>
+                        <center className="buttonBox">
+                            <button onClick={() => {
+                                navigateTo("/quiz?quiz_type=track&playlist_link=" + playlist_link)
+                            }}> Quiz By Tracks </button>
+                            <button onClick={() => {
+                                navigateTo("/quiz?quiz_type=album&playlist_link=" + playlist_link)
+                            }}> Quiz By Album </button>
+                            <button onClick={() => {
+                                navigateTo("/quiz?quiz_type=artist&playlist_link=" + playlist_link)
+                            }}> Quiz By Artist </button>
+                        </center>
+                    </div>
+                }
+            </center>
+            <div className="sideBar">
+                {playlistSuggestions.lists.map(suggestion => 
+                    <button key={suggestion.url}
+                        onClick={() => {
+                            setPlaylistLink(parsePlaylistLinkToPlaylistID(suggestion.url))
+                        }}>
+                        {suggestion.name}
+                    </button>
+                )}
+            </div>
+        </div>
+        
     )
 }

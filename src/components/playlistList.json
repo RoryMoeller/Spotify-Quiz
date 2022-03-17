@@ -1,0 +1,32 @@
+{
+    "lists": [
+        {
+            "name" : "Classic Rock",
+            "url" : "https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=8890572eab254a5f"
+        },
+        {
+            "name" : "Heavy Metal",
+            "url" : "https://open.spotify.com/playlist/37i9dQZF1DX9qNs32fujYe?si=f205506872004963"
+        },
+        {
+            "name" : "Solid Rock",
+            "url" : "https://open.spotify.com/playlist/37i9dQZF1DX49jUV2NfGku?si=9ff0c91015654636"
+        },
+        {
+            "name" : "Classical",
+            "url": "https://open.spotify.com/playlist/37i9dQZF1DWWEJlAGA9gs0?si=db7183cd898d490c"
+        },
+        {
+            "name" : "Lo Fi",
+            "url" : "https://open.spotify.com/playlist/37i9dQZF1DWWQRwui0ExPn?si=05cc3eeeb0c84b09"
+        },
+        {
+            "name" : "Country",
+            "url" : "https://open.spotify.com/playlist/37i9dQZF1EQmPV0vrce2QZ?si=103ff078d37f45aa"
+        },
+        {
+            "name" : "Hip-Hop",
+            "url" : "https://open.spotify.com/playlist/37i9dQZF1DXbkfWVLd8wE3?si=84658dec843c4047"
+        }
+    ]
+}
