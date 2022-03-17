@@ -55,10 +55,14 @@ export function Home(props) {
     const homeStyle = css`
         .trackBox {
             overflow-y: auto;
+            overflow-x: clip;
             max-height: 60vh;
             max-width: 60vw;
-            border: 1px solid transparent;
+            border: none;
             background-color: white;
+            border-radius: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(${colors.standard.background.quaternary}, 1) rgba(${colors.standard.background.primary}, 1);
         }
         .buttonBox {
             display: flex;
@@ -105,9 +109,10 @@ export function Home(props) {
 
     `
     // Playlist building
-    const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
-    const [playlist, loading, error, playlistName] = useSpotifyPlaylist(playlist_link, props.auth_token);
+    const [playlist_link, setPlaylistLink] = useState('37i9dQZF1DWXRqgorJj26U')
+    const [playlist, loading, error, playlistName, playlistLink] = useSpotifyPlaylist(playlist_link, props.auth_token);
     props.setPlaylistName(playlistName)
+    props.setPlaylistLink(playlistLink)
     const [trackList, setTrackList] = useState(new TrackList(playlist))
     const navigateTo = useNavigate();
     useEffect(() => {
