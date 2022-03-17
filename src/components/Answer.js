@@ -24,7 +24,7 @@ export function Answer(props) {
             font-size: 25px;
         }
         &:hover {
-            box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
+            box-shadow: 0px 0px 15px rgba(${colors.standard.text},0.8);
             filter: brightness(1.2);
         }
     `
