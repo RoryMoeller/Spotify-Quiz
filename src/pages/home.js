@@ -4,7 +4,7 @@ import { css } from "@emotion/react";
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import colors from '../components/colorTheme';
 
 import { useSpotifyPlaylist } from '../hooks/useSpotifyPlaylist';
 
@@ -67,13 +67,20 @@ export function Home(props) {
             margin-top: 30px;
         }
         button {
+            background-color: white;
+            color: rgba(0, 0, 0, 0.5);
             padding-left: 18px;
             padding-bottom: 5px;
             padding-right: 18px;
             padding-top: 5px;
             border-radius: 500px;
             font-size: 25px;
-        }
+            border: none;
+        }    
+    `
+    const otherStyle = css`
+    color: rgb(${colors.standard.text});
+
     `
     // Playlist building
     const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
@@ -98,14 +105,13 @@ export function Home(props) {
 
     return (
         <center css={homeStyle}>
-            This is the home screen wow
-            <p>Paste playlist link below</p>
+            <p css={otherStyle}>Paste playlist link below</p>
             <input onChange={updatePlaylist} placeholder="Hyperlink to spotify playlist" />
             {loading && <p>Loading...</p>}
             {error && <p>Error! {error}</p>}
             {!loading && !error && trackList.size > 0 &&
                 <div>
-                    <p>Currently using this playlist:</p>
+                    <p css={otherStyle}>Currently using this playlist:</p>
                     <pre className="trackBox">
                         {parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n")}
                     </pre>
