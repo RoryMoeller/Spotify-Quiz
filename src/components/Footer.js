@@ -5,6 +5,10 @@ import colors from "./colorTheme";
 
 export function Footer(props) {
     const footerStyle = css`
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        
         height: 60px;
         padding-top: 5px;
         position: fixed;
@@ -16,11 +20,11 @@ export function Footer(props) {
     `;
     return (
         <div css={footerStyle}>
-            This is a footer
+            <div>Powered by Spotify</div>
             <div className="questionCounter">
                 <div>Questions: {props.correctCount} / {props.questionCount}</div>
-                <div>{props.playlistName}</div>
             </div>
+            <div>{props.playlistName}</div>
             {props.content && <div>{props.content}</div>}
         </div>
     )
