@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/spotify-quiz/static/css/main.073c9b0a.css",
-    "main.js": "/spotify-quiz/static/js/main.48ef0207.js",
+    "main.js": "/spotify-quiz/static/js/main.96cdd958.js",
     "index.html": "/spotify-quiz/index.html",
     "main.073c9b0a.css.map": "/spotify-quiz/static/css/main.073c9b0a.css.map",
-    "main.48ef0207.js.map": "/spotify-quiz/static/js/main.48ef0207.js.map"
+    "main.96cdd958.js.map": "/spotify-quiz/static/js/main.96cdd958.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.48ef0207.js"
+    "static/js/main.96cdd958.js"
   ]
 }
