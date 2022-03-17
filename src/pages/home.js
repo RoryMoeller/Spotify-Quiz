@@ -94,7 +94,9 @@ export function Home(props) {
             width: 100%;
             border: none;
             height: 50px;
-
+        }
+        .sideBar button:hover {
+            filter: brightness(0.5);
         }
 
     `
