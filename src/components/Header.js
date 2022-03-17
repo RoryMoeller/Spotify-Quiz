@@ -27,12 +27,13 @@ export function Header(props) {
     float: left;
     color: white;
     margin: 5px;
+    margin-left: 20px;
 `;
     return (
         <div>
             <div css={headerStyle}>
                 <Link css={homeButton} to="/home"><RiSpotifyLine /></Link>
-                <NavLink css={otherStyle} to="/home">Spotify Playlist Quiz</NavLink>
+                Spotify Playlist Quiz
                 {props.content && <div>{props.content}</div>}
             </div>
         </div>
