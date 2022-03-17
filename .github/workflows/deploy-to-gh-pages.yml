@@ -1,0 +1,38 @@
+name: deploy-to-gh-pages
+
+on:
+  push:
+    branches:
+      - hash-routed-with-login
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      COMMIT_USER_NAME: GitHub Action Runner
+      COMMIT_USER_EMAIL: support+actions@github.com
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build for production
+        run: npm run build
+
+      - name: Set Git configs
+        run: |
+          git config user.name "${{ env.COMMIT_USER_NAME }}"
+          git config user.email "${{ env.COMMIT_USER_EMAIL }}"
+          git remote set-url origin "https://git:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+      - name: Deploy to GH Pages
+        run: npm run deploy -- --user "${{ env.COMMIT_USER_NAME }} <${{ env.COMMIT_USER_EMAIL }}>"
