@@ -99,7 +99,7 @@ export function Home(props) {
 
     `
     const otherStyle = css`
-    color: rgb(${colors.standard.text});
+    color: rgb(${colors.standard.text.primary});
 
     `
     // Playlist building
