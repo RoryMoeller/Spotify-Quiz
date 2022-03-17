@@ -124,10 +124,13 @@ export function Quiz(props) {
         }
         return tracks
     }
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);;
+      }
 
     return (
         <div>
-            <p> {quizType} Quiz</p>
+            <p> {capitalizeFirstLetter(quizType)} Quiz</p>
 
             <center>
                 {loading && <p>Loading...</p>}
