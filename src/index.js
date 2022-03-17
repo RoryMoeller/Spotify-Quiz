@@ -6,11 +6,8 @@ import './index.css';
 import App from './App';
 
 // check if landed on home page
-console.log(window.location)
-console.log(window.location.hash.substr(1, 13))
 if (window.location.hash.substr(1,13) === "access_token="){
     var queryParams = new URLSearchParams(window.location.hash.substr(1)).get('access_token')
-    console.log("Landed on home page, setting token to: " + queryParams)
     window.location = window.location.origin + "#/home?" + window.location.hash.substr(1)
 }
 ReactDOM.render(

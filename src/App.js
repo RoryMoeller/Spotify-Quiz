@@ -49,13 +49,11 @@ function App(props) {
     const AUTH_TOKEN = "Bearer " + (props.accessToken || process.env.REACT_APP_SPOTIFY_AUTH_TOKEN);
     const [spotifyToken, setSpotifyToken] = useState(AUTH_TOKEN)
     const queryParams = new URLSearchParams(window.location.hash.substr(1));
-    console.log(queryParams.get('access_token'))
     const resetQuizStats = function () {
         setTotalQuestions(0)
         setCorrectResponses(0)
     }
 
-    console.log(props.auth_token)
     return (
         <div className="App">
             <Global styles={globalStyles} />
