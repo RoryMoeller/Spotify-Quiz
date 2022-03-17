@@ -53,6 +53,7 @@ function App(props) {
         <div className="App">
             <Global styles={globalStyles} />
             <Header />
+            <Footer questionCount={totalQuestions} correctCount={correctResponses} playlistName={playlistName} playlistLink={playlistLink} />
             <Routes>
                 <Route path="/home" element={<Home auth_token={props.auth_token} setPlaylistName={setPlaylistName} setPlaylistLink={setPlaylistLink} />} />
                 <Route path="/quiz" element={
@@ -68,7 +69,6 @@ function App(props) {
                 } />
                 <Route path="/" exact element={<Navigate to={"/home"} />} />
             </Routes>
-            <Footer questionCount={totalQuestions} correctCount={correctResponses} playlistName={playlistName} playlistLink={playlistLink} />
         </div>
     );
 }
