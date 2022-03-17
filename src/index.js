@@ -8,7 +8,7 @@ import App from './App';
 // check if landed on home page
 if (window.location.hash.substr(1,13) === "access_token="){
     var queryParams = new URLSearchParams(window.location.hash.substr(1)).get('access_token')
-    window.location = window.location.origin + "#/home?" + window.location.hash.substr(1)
+    window.location = window.location.origin + (window.location.pathname ? window.location.pathname : "") + "#/home?" + window.location.hash.substr(1)
 }
 ReactDOM.render(
     <React.StrictMode>
