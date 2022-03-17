@@ -1,3 +1,7 @@
+/** @jsxImportSource @emotion/react */
+
+import { css } from "@emotion/react";
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -47,6 +51,14 @@ function parsePlaylistToTrackList(playlist) {
 
 
 export function Home(props) {
+    const homeStyle = css`
+        pre {
+            overflow-y: auto;
+            max-height: 60vh;
+            max-width: 60vw;
+            border: 1px solid black;
+        }
+    `
     // Playlist building
     const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
     const [playlist, loading, error] = useSpotifyPlaylist(playlist_link, props.auth_token);
@@ -69,7 +81,7 @@ export function Home(props) {
     }
 
     return (
-        <div>
+        <center css={homeStyle}>
             This is the home screen wow
             <p>Paste playlist link below</p>
             <input onChange={updatePlaylist} placeholder="Hyperlink to spotify playlist" />
@@ -95,6 +107,6 @@ export function Home(props) {
                     }}> Quiz By Artist </button>
                 </div>
             }
-        </div>
+        </center>
     )
 }
