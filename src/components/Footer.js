@@ -28,7 +28,7 @@ export function Footer(props) {
     console.log("link:", props.playlistLink)
     return (
         <div css={footerStyle}>
-            <div>Powered by Spotify</div>
+            <div><a href="https://www.spotify.com/" target="_blank" rel="noreferrer">Powered by Spotify</a></div>
             <div className="questionCounter">
                 <div>Questions: {props.correctCount} / {props.questionCount}</div>
             </div>
