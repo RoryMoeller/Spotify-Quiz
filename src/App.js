@@ -45,14 +45,14 @@ function App(props) {
     }
     const [playlistName, setPlaylistName] = useState("")
     const [playlistLink, setPlaylistLink] = useState("")
-    const questionLimit = 15
+    const [questionLimit, setQuestionLimit] = useState(15)
 
     console.log(props.auth_token)
     return (
         <div className="App">
             <Global styles={globalStyles} />
             <Header />
-            <Footer questionCount={totalQuestions} correctCount={correctResponses} playlistName={playlistName} playlistLink={playlistLink} />
+            <Footer questionCount={totalQuestions} correctCount={correctResponses} playlistName={playlistName} playlistLink={playlistLink} setQuestionLimit={setQuestionLimit} />
             <Routes>
                 <Route path="/home" element={<Home auth_token={props.auth_token} setPlaylistName={setPlaylistName} setPlaylistLink={setPlaylistLink} />} />
                 <Route path="/quiz" element={
