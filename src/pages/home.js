@@ -106,8 +106,9 @@ export function Home(props) {
     `
     // Playlist building
     const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
-    const [playlist, loading, error, playlistName] = useSpotifyPlaylist(playlist_link, props.auth_token);
+    const [playlist, loading, error, playlistName, playlistLink] = useSpotifyPlaylist(playlist_link, props.auth_token);
     props.setPlaylistName(playlistName)
+    props.setPlaylistLink(playlistLink)
     const [trackList, setTrackList] = useState(new TrackList(playlist))
     const navigateTo = useNavigate();
     useEffect(() => {
