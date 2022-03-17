@@ -17,7 +17,6 @@ class TrackList {
         })
         this.tracks.filter(track => track.type === 'track')
         this.size = this.tracks.length
-        console.log(this.tracks)
     }
     grabAnyTrack() {
         return this.tracks[Math.floor(Math.random() * this.tracks.length)]
@@ -37,7 +36,7 @@ class TrackList {
 
 function parsePlaylistLinkToPlaylistID(link) {
     if (link.substr(0, 34) === 'https://open.spotify.com/playlist/') {
-        console.log(link.split('/')[4].split('?')[0])
+        // console.log(link.split('/')[4].split('?')[0])
         return link.split('/')[4].split('?')[0]
     } else {
         return link
@@ -77,7 +76,8 @@ export function Home(props) {
     `
     // Playlist building
     const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
-    const [playlist, loading, error] = useSpotifyPlaylist(playlist_link, props.auth_token);
+    const [playlist, loading, error, playlistName] = useSpotifyPlaylist(playlist_link, props.auth_token);
+    props.setPlaylistName(playlistName)
     const [trackList, setTrackList] = useState(new TrackList(playlist))
     const navigateTo = useNavigate();
     useEffect(() => {
@@ -111,15 +111,12 @@ export function Home(props) {
                     </pre>
                     <center className="buttonBox">
                         <button onClick={() => {
-                            console.log("This functionality should probably be handled by the header/navbar?")
                             navigateTo("/quiz?quiz_type=track&playlist_link=" + playlist_link)
                         }}> Quiz By Tracks </button>
                         <button onClick={() => {
-                            console.log("This functionality should probably be handled by the header/navbar?")
                             navigateTo("/quiz?quiz_type=album&playlist_link=" + playlist_link)
                         }}> Quiz By Album </button>
                         <button onClick={() => {
-                            console.log("This functionality should probably be handled by the header/navbar?")
                             navigateTo("/quiz?quiz_type=artist&playlist_link=" + playlist_link)
                         }}> Quiz By Artist </button>
                     </center>

@@ -4,6 +4,7 @@ export function useSpotifyPlaylist(playlist_id, auth_token) {
     const [playlist, setPlaylist] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const [name, setName] = useState('')
 
     useEffect(() => {
         let ignore = false;
@@ -38,6 +39,9 @@ export function useSpotifyPlaylist(playlist_id, auth_token) {
                 setError(false);
                 try {
                     setPlaylist(responseBody.tracks.items || []); // incase there are no results
+                    if (playlist.length > 0) {
+                        setName(responseBody.name)
+                    }
                 } catch (e) {
                     if(responseBody.error.status === 401 || responseBody.error.message === "The access token expired") {
                         setError("Access token expired")
@@ -56,5 +60,5 @@ export function useSpotifyPlaylist(playlist_id, auth_token) {
             ignore = true;
         }
     }, [playlist_id, auth_token]);
-    return [playlist, loading, error];
+    return [playlist, loading, error, name];
 }
