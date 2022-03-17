@@ -1,12 +1,9 @@
 /** @jsxImportSource @emotion/react */
 
-import { RiSpotifyLine  } from 'react-icons/ri';
+import { RiSpotifyLine, RiGithubLine } from 'react-icons/ri';
 import { css } from "@emotion/react";
 import colors from "./colorTheme"
-import { 
-    Link,
-    NavLink,
-  }from 'react-router-dom';
+import { Link }from 'react-router-dom';
 export function Header(props) {
     const headerStyle = css`
         color: white;
@@ -28,6 +25,12 @@ export function Header(props) {
     color: white;
     margin: 5px;
     margin-left: 20px;
+    `;
+    const gitHubButton = css`
+    float: right;
+    color: white;
+    margin: 5px;
+    margin-right: 20px;
 `;
     return (
         <div>
@@ -35,6 +38,7 @@ export function Header(props) {
                 <Link css={homeButton} to="/home"><RiSpotifyLine /></Link>
                 Spotify Playlist Quiz
                 {props.content && <div>{props.content}</div>}
+                <a css={gitHubButton} target="_blank" rel="noreferrer" href="https://github.com/RoryMoeller/spotify-quiz"><RiGithubLine /></a>
             </div>
         </div>
     )
