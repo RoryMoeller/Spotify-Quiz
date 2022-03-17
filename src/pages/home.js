@@ -55,10 +55,14 @@ export function Home(props) {
     const homeStyle = css`
         .trackBox {
             overflow-y: auto;
+            overflow-x: clip;
             max-height: 60vh;
             max-width: 60vw;
-            border: 1px solid transparent;
+            border: none;
             background-color: white;
+            border-radius: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(${colors.standard.background.quaternary}, 1) rgba(${colors.standard.background.primary}, 1);
         }
         .buttonBox {
             display: flex;
