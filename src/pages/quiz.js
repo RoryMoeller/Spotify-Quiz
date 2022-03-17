@@ -63,7 +63,6 @@ function AnswerBank(props) {
         margin-top: 25px;
 
     `
-
     const answerElements = []
     // generate random number between 0 and the length of the answer array
     const correctIndex = parseInt( Math.random() * 10  % props.answers.length )
@@ -102,6 +101,9 @@ function AnswerBank(props) {
 }
 
 export function Quiz(props) {
+    const quizHeader = css`
+    color: rgb(${colors.standard.text});
+`
     var nav_playlist_link = new URLSearchParams(window.location.search).get('playlist_link')
     if (nav_playlist_link === null) {
         alert("Please enter a playlist link")
@@ -130,8 +132,9 @@ export function Quiz(props) {
 
     return (
         <div>
-            <p> {capitalizeFirstLetter(quizType)} Quiz</p>
-
+            <div css = {quizHeader}>
+            <p>{capitalizeFirstLetter(quizType)} Quiz</p>
+            </div>
             <center>
                 {loading && <p>Loading...</p>}
                 {error && <p>Error! {error}</p>}
