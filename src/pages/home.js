@@ -83,8 +83,9 @@ export function Home(props) {
             cursor: pointer;
             
         }
-        .active {
-            background-color: rgb(${colors.standard.accents.lighter});
+        .active  {
+            background-color: rgb(${colors.standard.accents.lighter}) !important;
+            color: rgb(${colors.standard.text.button}) !important;
         }
         .sideBar {
             display: flex;
@@ -92,17 +93,19 @@ export function Home(props) {
             justify-content: space-evenly;
             align-items: center;
             width: 200px;
-            background-color: white;
+            background-color: rgb(${colors.standard.background.primary});
             position: absolute;
             top: 65px;
             left: 0;
             height: calc(100vh - 130px);
         }
         .sideBar button {
-            width: 100%;
+            width: 50%;
             border: none;
             height: 50px;
             cursor: pointer;
+            background-color: rgb(${colors.standard.background.primary});
+            color: rgb(${colors.standard.text.primary});
         }
         .sideBar button:hover {
             filter: brightness(0.5);
@@ -111,6 +114,8 @@ export function Home(props) {
             width: 250px;
             height: 40px;
             font-size: 20px;
+            background-color: rgb(${colors.standard.background.dark});
+            color: rgb(${colors.standard.text.primary});
         }
         button, select {
             font-family: inherit;
