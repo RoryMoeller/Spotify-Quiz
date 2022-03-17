@@ -13,7 +13,7 @@ export function Header(props) {
         box-shadow: 0px 7px 10px 5px rgba(0,0,0,0.2);
         margin-bottom: 20px;
         background-color: rgba(${colors.standard.accents.primary}, .7);
-        backdrop-filter: blur(5px);4
+        backdrop-filter: blur(5px);
     `;
     return (
         <div css={headerStyle}>
