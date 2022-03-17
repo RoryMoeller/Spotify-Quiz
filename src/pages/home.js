@@ -105,7 +105,7 @@ export function Home(props) {
 
     `
     // Playlist building
-    const [playlist_link, setPlaylistLink] = useState('4S9D4eYUYqIR9CqiMfvNJo')
+    const [playlist_link, setPlaylistLink] = useState('37i9dQZF1DWXRqgorJj26U')
     const [playlist, loading, error, playlistName, playlistLink] = useSpotifyPlaylist(playlist_link, props.auth_token);
     props.setPlaylistName(playlistName)
     props.setPlaylistLink(playlistLink)

@@ -111,7 +111,7 @@ export function Quiz(props) {
     var nav_playlist_link = new URLSearchParams(window.location.search).get('playlist_link')
     if (nav_playlist_link === null) {
         alert("Please enter a playlist link")
-        nav_playlist_link = "4S9D4eYUYqIR9CqiMfvNJo"
+        nav_playlist_link = "37i9dQZF1DWXRqgorJj26U"
     }
     const [playlist, loading, error,,] = useSpotifyPlaylist(nav_playlist_link, props.auth_token);
     const [trackList, setTrackList] = useState(new TrackList(playlist))
