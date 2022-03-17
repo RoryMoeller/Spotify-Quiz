@@ -50,7 +50,8 @@ function parsePlaylistToTrackList(playlist) {
 
 const logMeIn = function() {
     var client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-    var redirect_uri = 'http://localhost:3000/#/home';
+
+    var redirect_uri = window.location.origin + '/#/home';
     var state = Math.random().toFixed(16).toString();
     localStorage.setItem('stateKey', 'state');
     var scope = 'user-read-private user-read-email';
