@@ -10,7 +10,7 @@ import colors from '../components/colorTheme';
 class TrackList {
     constructor(playlist) {
         this.tracks = []
-        playlist.map(entry => {
+        playlist.forEach(entry => {
             this.tracks.push(entry.track)
         })
         this.tracks.filter(track => track.type === 'track')
@@ -113,7 +113,7 @@ export function Quiz(props) {
         alert("Please enter a playlist link")
         nav_playlist_link = "4S9D4eYUYqIR9CqiMfvNJo"
     }
-    const [playlist, loading, error] = useSpotifyPlaylist(nav_playlist_link, props.auth_token);
+    const [playlist, loading, error,] = useSpotifyPlaylist(nav_playlist_link, props.auth_token);
     const [trackList, setTrackList] = useState(new TrackList(playlist))
     const quizType = new URLSearchParams(window.location.search).get('quiz_type')
 

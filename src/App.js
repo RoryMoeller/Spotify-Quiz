@@ -5,7 +5,7 @@ import { css, Global } from "@emotion/react";
 import './App.css';
 
 import { useState } from 'react';
-import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Home } from './pages/home';
 import { Quiz } from './pages/quiz';
@@ -44,6 +44,7 @@ function App(props) {
         setCorrectResponses(correctResponses + 1)
         setTotalQuestions(totalQuestions + 1)
     }
+    const [playlistName, setPlaylistName] = useState("")
     const questionLimit = 15
 
     console.log(props.auth_token)
@@ -52,7 +53,7 @@ function App(props) {
             <Global styles={globalStyles} />
             <Header />
             <Routes>
-                <Route path="/home" element={<Home auth_token={props.auth_token} />} />
+                <Route path="/home" element={<Home auth_token={props.auth_token} setPlaylistName={setPlaylistName} />} />
                 <Route path="/quiz" element={
                     totalQuestions < questionLimit ?
                     <Quiz auth_token={props.auth_token} addCorrect={correctResponse} addIncorrect={incorrectResponse} /> :
@@ -66,7 +67,7 @@ function App(props) {
                 } />
                 <Route path="/" exact element={<Navigate to={"/home"} />} />
             </Routes>
-            <Footer questionCount={totalQuestions} correctCount={correctResponses} />
+            <Footer questionCount={totalQuestions} correctCount={correctResponses} playlistName={playlistName}/>
         </div>
     );
 }
