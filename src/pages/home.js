@@ -88,6 +88,10 @@ export function Home(props) {
             cursor: pointer;
             
         }
+        .buttonBox button:hover {
+            filter: brightness(0.5);
+            
+        }
         .active  {
             background-color: rgb(${colors.standard.accents.lighter}) !important;
             color: rgb(${colors.standard.text.button}) !important;

@@ -26,6 +26,10 @@ export function Done(props) {
         border: none;
         cursor: pointer;
     }
+    .buttonBox button:hover {
+        filter: brightness(0.5);
+        
+    }
     `
     const otherStyle = css`
     padding-top: 150px;
