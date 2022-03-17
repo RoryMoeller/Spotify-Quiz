@@ -52,7 +52,7 @@ function parsePlaylistToTrackList(playlist) {
 
 export function Home(props) {
     const homeStyle = css`
-        pre {
+        .trackBox {
             overflow-y: auto;
             max-height: 60vh;
             max-width: 60vw;
@@ -90,7 +90,7 @@ export function Home(props) {
             {!loading && !error && trackList.size > 0 &&
                 <div>
                     <p>Currently using this playlist:</p>
-                    <pre>
+                    <pre className="trackBox">
                         {parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n")}
                     </pre> 
                     <button onClick={() => {
