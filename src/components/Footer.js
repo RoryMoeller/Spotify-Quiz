@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
+import { useEffect } from "react";
 import colors from "./colorTheme";
 
 export function Footer(props) {
@@ -22,16 +23,46 @@ export function Footer(props) {
         color: rgba(${colors.standard.text.primary});
         a {
             color: rgba(${colors.standard.text.primary});
-
+        }
+        select {
+            font-size: 20px;
         }
     `;
+    const updateLength = function(e){
+        if (e.target.value.length <= 0){
+            return
+        }
+        switch(e.target.options.selectedIndex) {
+            case 0:
+                props.setQuestionLimit(10);
+                break;
+            case 1:
+                props.setQuestionLimit(15);
+                break;
+            case 2:
+                props.setQuestionLimit(20);
+                break;
+            default:
+                props.setQuestionLimit(15);
+                break;
+        }
+        e.preventDefault();
+    }
     return (
         <div css={footerStyle}>
             <div><a href="https://www.spotify.com/" target="_blank" rel="noreferrer">Powered by Spotify</a></div>
             <div className="questionCounter">
+                <div><a href={props.playlistLink} target="_blank" rel="noreferrer">{props.playlistName}</a></div>
                 <div>Questions: {props.correctCount} / {props.questionCount}</div>
             </div>
-            <div><a href={props.playlistLink} target="_blank" rel="noreferrer">{props.playlistName}</a></div>
+            <div>
+                <select onChange={updateLength} defaultValue={"medium"}>
+                    <option value="short">short</option>
+                    <option value="medium">medium</option>
+                    <option value="long">long</option>
+                </select>
+                    
+            </div>
             {props.content && <div>{props.content}</div>}
         </div>
     )
