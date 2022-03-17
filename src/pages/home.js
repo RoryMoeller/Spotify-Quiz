@@ -62,6 +62,11 @@ export function Home(props) {
             border-radius: 20px;
             scrollbar-width: thin;
             scrollbar-color: rgba(${colors.standard.background.quaternary}, 1) rgba(${colors.standard.background.primary}, 1);
+            background-color: rgb(${colors.standard.table.bg});
+            color: rgb(${colors.standard.text.secondary});
+            table {
+            }
+
         }
         .buttonBox {
             display: flex;
@@ -116,6 +121,9 @@ export function Home(props) {
             font-size: 20px;
             background-color: rgb(${colors.standard.background.dark});
             color: rgb(${colors.standard.text.primary});
+        }
+        input:focus {
+            outline: 1px solid rgb(${colors.standard.accents.primary});
         }
         button, select {
             font-family: inherit;
