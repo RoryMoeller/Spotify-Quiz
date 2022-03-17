@@ -45,7 +45,7 @@ function AnswerBank(props) {
             margin-bottom: 30px;
         }
         color: rgb(${colors.standard.text});
-        background-color: rgba(${colors.standard.background.quaternary} .2);
+        background-color: rgba(${colors.standard.background.quaternary}, .2);
         padding-top: 10px;
         margin-bottom: 20px;
         padding-bottom: 60px;
