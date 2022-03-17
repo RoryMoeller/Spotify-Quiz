@@ -29,8 +29,6 @@ export function Answer(props) {
         }
     `
 
-    console.log(props)
-
     if (props.ansType === "album") {
         return (
             <button onClick={props.submitSelection} css={ansBoxStyle}>

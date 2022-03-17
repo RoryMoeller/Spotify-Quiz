@@ -38,7 +38,6 @@ class TrackList {
 
 function parsePlaylistLinkToPlaylistID(link) {
     if (link.substr(0, 34) === 'https://open.spotify.com/playlist/') {
-        // console.log(link.split('/')[4].split('?')[0])
         return link.split('/')[4].split('?')[0]
     } else {
         return link
@@ -82,6 +81,10 @@ export function Home(props) {
             font-size: 25px;
             border: none;
             cursor: pointer;
+            
+        }
+        .active {
+            background-color: rgb(${colors.standard.accents.lighter});
         }
         .sideBar {
             display: flex;
@@ -167,7 +170,8 @@ export function Home(props) {
             </center>
             <div className="sideBar">
                 {playlistSuggestions.lists.map(suggestion => 
-                    <button key={suggestion.url}
+                    <button key={suggestion.url} 
+                        className={playlist_link === parsePlaylistLinkToPlaylistID(suggestion.url) ? "active" : ""} 
                         onClick={() => {
                             setPlaylistLink(parsePlaylistLinkToPlaylistID(suggestion.url))
                         }}>

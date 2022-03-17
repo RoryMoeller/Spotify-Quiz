@@ -2,7 +2,8 @@
     "standard" : {
         "accents" : {
             "primary": "30,215,96",
-            "darker": "16,115,51"
+            "darker": "16,115,51",
+            "lighter": "116,232,157"
         },
         "background" : {
             "primary": "45,45,45",

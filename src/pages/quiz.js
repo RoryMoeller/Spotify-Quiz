@@ -15,7 +15,6 @@ class TrackList {
         })
         this.tracks.filter(track => track.type === 'track')
         this.size = this.tracks.length
-        console.log(this.tracks)
     }
     grabAnyTrack() {
         return this.tracks[Math.floor(Math.random() * this.tracks.length)]
@@ -66,7 +65,6 @@ function AnswerBank(props) {
     const answerElements = []
     // generate random number between 0 and the length of the answer array
     const correctIndex = parseInt( Math.random() * 10  % props.answers.length )
-    console.log(correctIndex)
     for (let i = 0; i < props.answers.length; i++) {
         answerElements.push(
             <Answer key={i} answer={props.answers[i]} ansType={props.ansType} submitSelection={i === correctIndex ? props.addCorrect : props.addIncorrect} />
