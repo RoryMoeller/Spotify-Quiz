@@ -46,8 +46,10 @@ function App(props) {
     const [playlistName, setPlaylistName] = useState("")
     const [playlistLink, setPlaylistLink] = useState("")
     const [questionLimit, setQuestionLimit] = useState(15)
-    const AUTH_TOKEN = "Bearer " + process.env.REACT_APP_SPOTIFY_AUTH_TOKEN;
+    const AUTH_TOKEN = "Bearer " + (props.accessToken || process.env.REACT_APP_SPOTIFY_AUTH_TOKEN);
     const [spotifyToken, setSpotifyToken] = useState(AUTH_TOKEN)
+    const queryParams = new URLSearchParams(window.location.hash.substr(1));
+    console.log(queryParams.get('access_token'))
     const resetQuizStats = function () {
         setTotalQuestions(0)
         setCorrectResponses(0)
@@ -60,19 +62,19 @@ function App(props) {
             <Header />
             <Footer questionCount={totalQuestions} correctCount={correctResponses} playlistName={playlistName} playlistLink={playlistLink} setQuestionLimit={setQuestionLimit} />
             <Routes>
-                <Route path="/home" element={<Home updateToken={setSpotifyToken} auth_token={spotifyToken} setPlaylistName={setPlaylistName} setPlaylistLink={setPlaylistLink} resetQuizStats={resetQuizStats} />} />
-                <Route path="/quiz" element={
+                <Route path="home" element={<Home updateToken={setSpotifyToken} auth_token={spotifyToken} setPlaylistName={setPlaylistName} setPlaylistLink={setPlaylistLink} resetQuizStats={resetQuizStats} />} />
+                <Route path="quiz" element={
                     totalQuestions < questionLimit ?
                     <Quiz auth_token={spotifyToken} addCorrect={correctResponse} addIncorrect={incorrectResponse} /> :
                     <Navigate to="/done" redirect/>
                 } />
                 
-                <Route path="/done" element={
+                <Route path="done" element={
                     (totalQuestions < questionLimit) ?
                     <Navigate to="/home" replace />  :
                     <Done correctCount={correctResponses} questionCount={totalQuestions} /> 
                 } />
-                <Route path="/" exact element={<Navigate to={"/home"} />} />
+                <Route path="/" exact element={<Navigate to={"home"} />} />
             </Routes>
         </div>
     );

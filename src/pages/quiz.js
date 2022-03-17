@@ -109,14 +109,15 @@ export function Quiz(props) {
     const quizHeader = css`
     color: rgb(${colors.standard.text.primary});
 `
-    var nav_playlist_link = new URLSearchParams(window.location.search).get('playlist_link')
+
+    var nav_playlist_link = new URLSearchParams(window.location.hash.substr(6)).get('playlist_link')
     if (nav_playlist_link === null) {
         alert("Please enter a playlist link")
         nav_playlist_link = "37i9dQZF1DWXRqgorJj26U"
     }
     const [playlist, loading, error,,] = useSpotifyPlaylist(nav_playlist_link, props.auth_token);
     const [trackList, setTrackList] = useState(new TrackList(playlist))
-    const quizType = new URLSearchParams(window.location.search).get('quiz_type')
+    const quizType = new URLSearchParams(window.location.hash.substr(6)).get('quiz_type')
 
     useEffect(() => {
         if (playlist) {
