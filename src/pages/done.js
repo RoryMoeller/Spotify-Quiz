@@ -11,7 +11,7 @@ export function Done(props) {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        width: 75%;
+        width: 100%;
         margin-top: 30px;
     }
     .buttonBox button {
