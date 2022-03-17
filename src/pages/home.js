@@ -154,27 +154,29 @@ export function Home(props) {
                 {!loading && !error && trackList.size > 0 &&
                     <div>
                         <p css={otherStyle}>Currently using this playlist:</p>
-                        <table className="trackBox">
-                            <thead>
-                                <tr>
-                                    <th>Track</th>
-                                    <th>Album</th>
-                                    <th>Year</th>
-                                    <th>Artist</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <div className="trackBox">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Track</th>
+                                        <th>Album</th>
+                                        <th>Year</th>
+                                        <th>Artist</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            {parsePlaylistToTrackList(playlist).tracks.map(track => 
-                                <tr>
-                                    <td>{track.name}</td>
-                                    <td>{track.album.name}</td>
-                                    <td>{track.album.release_date.substr(0,4)}</td>
-                                    <td>{track.artists[0].name}</td>
-                                </tr>
-                            )}
-                            </tbody>
-                        </table>
+                                {parsePlaylistToTrackList(playlist).tracks.map(track => 
+                                    <tr key={track.name + track.album.name + track.album.release_date}>
+                                        <td>{track.name}</td>
+                                        <td>{track.album.name}</td>
+                                        <td>{track.album.release_date.substr(0,4)}</td>
+                                        <td>{track.artists[0].name}</td>
+                                    </tr>
+                                )}
+                                </tbody>
+                            </table>
+                        </div>
                         <center className="buttonBox">
                             <button onClick={() => {
                                 navigateTo("/quiz?quiz_type=track&playlist_link=" + playlist_link)
