@@ -89,6 +89,20 @@ export function Home(props) {
             width: 75%;
             margin-top: 30px;
         }
+        @media (max-height: 900px) {
+            .buttonBox {
+                position: fixed;
+                top: 45px;
+                bottom: 45px;
+                flex-direction: column;
+                right: 40px;
+                width: 90px;
+            }
+            .buttonBox button {
+                padding-top: 20px!important;
+                padding-bottom: 20px!important;
+            }
+        }
         .buttonBox button {
             background-color: rgb(${colors.standard.background.button});
             color: rgba(0, 0, 0, 0.5);
