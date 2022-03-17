@@ -112,6 +112,9 @@ export function Home(props) {
             height: 40px;
             font-size: 20px;
         }
+        button, select {
+            font-family: inherit;
+        }
 
     `
     const otherStyle = css`
@@ -119,6 +122,9 @@ export function Home(props) {
 
     `
     // Playlist building
+    // storing this here in case we want to switch back to the old way of listing playlists
+    /* </tr>track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n") */ 
+
     const [playlist_link, setPlaylistLink] = useState('37i9dQZF1DWXRqgorJj26U')
     const [playlist, loading, error, playlistName, playlistLink] = useSpotifyPlaylist(playlist_link, props.auth_token);
     props.setPlaylistName(playlistName)
@@ -151,9 +157,29 @@ export function Home(props) {
                 {!loading && !error && trackList.size > 0 &&
                     <div>
                         <p css={otherStyle}>Currently using this playlist:</p>
-                        <pre className="trackBox">
-                            {parsePlaylistToTrackList(playlist).tracks.map(track => track.name + " on " + track.album.name + "[" + track.album.release_date.substr(0, 4) + "] by " + track.artists[0].name + "\r\n")}
-                        </pre>
+                        <div className="trackBox">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Track</th>
+                                        <th>Album</th>
+                                        <th>Year</th>
+                                        <th>Artist</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                {parsePlaylistToTrackList(playlist).tracks.map(track => 
+                                    <tr key={track.name + track.album.name + track.album.release_date}>
+                                        <td>{track.name}</td>
+                                        <td>{track.album.name}</td>
+                                        <td>{track.album.release_date.substr(0,4)}</td>
+                                        <td>{track.artists[0].name}</td>
+                                    </tr>
+                                )}
+                                </tbody>
+                            </table>
+                        </div>
                         <center className="buttonBox">
                             <button onClick={() => {
                                 navigateTo("/quiz?quiz_type=track&playlist_link=" + playlist_link)
