@@ -51,7 +51,7 @@ function parsePlaylistToTrackList(playlist) {
 const logMeIn = function() {
     var client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID || "4499d51326ea4fb2a9e657703022b338";
 
-    var redirect_uri = window.location.origin + '/#/home';
+    var redirect_uri = window.location.origin + (window.location.pathname ? window.location.pathname : "") + '/#/home';
     var state = Math.random().toFixed(16).toString();
     // localStorage.setItem('stateKey', 'state');
     var scope = 'user-read-private user-read-email';
