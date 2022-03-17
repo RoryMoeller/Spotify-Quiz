@@ -104,6 +104,11 @@ export function Home(props) {
         .sideBar button:hover {
             filter: brightness(0.5);
         }
+        input {
+            width: 250px;
+            height: 40px;
+            font-size: 20px;
+        }
 
     `
     const otherStyle = css`
