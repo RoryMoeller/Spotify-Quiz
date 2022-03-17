@@ -59,6 +59,6 @@ export function useSpotifyPlaylist(playlist_id, auth_token) {
             controller.abort();
             ignore = true;
         }
-    }, [playlist_id, auth_token]);
+    }, [playlist_id, auth_token, playlist.length]);
     return [playlist, loading, error, name];
 }

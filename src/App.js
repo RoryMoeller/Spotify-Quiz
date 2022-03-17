@@ -5,7 +5,7 @@ import { css, Global } from "@emotion/react";
 import './App.css';
 
 import { useState } from 'react';
-import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Home } from './pages/home';
 import { Quiz } from './pages/quiz';

@@ -12,7 +12,7 @@ import { useSpotifyPlaylist } from '../hooks/useSpotifyPlaylist';
 class TrackList {
     constructor(playlist) {
         this.tracks = []
-        playlist.map(entry => {
+        playlist.forEach(entry => {
             this.tracks.push(entry.track)
         })
         this.tracks.filter(track => track.type === 'track')
