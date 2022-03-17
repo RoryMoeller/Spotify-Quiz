@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
-import { useEffect } from "react";
 import colors from "./colorTheme";
 
 export function Footer(props) {

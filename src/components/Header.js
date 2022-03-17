@@ -16,21 +16,18 @@ export function Header(props) {
         background-color: rgba(${colors.standard.accents.primary}, .7);
         backdrop-filter: blur(5px);
     `;
-    const otherStyle = css`
-    text-decoration: none;
-    color: white;
-    `;
+
     const homeButton = css`
-    float: left;
-    color: white;
-    margin: 5px;
-    margin-left: 20px;
+        float: left;
+        color: white;
+        margin: 5px;
+        margin-left: 20px;
     `;
     const gitHubButton = css`
-    float: right;
-    color: white;
-    margin: 5px;
-    margin-right: 20px;
+        float: right;
+        color: white;
+        margin: 5px;
+        margin-right: 20px;
 `;
     return (
         <div>
