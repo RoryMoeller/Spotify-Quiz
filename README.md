@@ -11,3 +11,5 @@ This web application provides an interface to use the Spotify API as a bank for 
 4. Add "REACT_APP_SPOTIFY_AUTH_TOKEN=" to the .env file and supply it with your auth token.
 5. Run `npm install` to install all required dependencies.
 6. Run `npm start` to start the server.
+
+![Screenshot of Spotify Quiz's interface](./screenshot.png)
